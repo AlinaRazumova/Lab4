@@ -36,3 +36,25 @@ for ((i=1; i<=$number_of_files; i++)); do
     echo "Script name: $0" >> $filename
     echo "Creation date: $(date)" >> $filename
 done
+
+show_help() {
+    echo "Pomoc:"
+    echo "Użycie: skrypt.sh [OPCJE]"
+    echo "Dostępne opcje:"
+    echo "  --help       Wyświetla pomoc"
+    echo "  -a, --option-a    Opcja A"
+    echo "  -b, --option-b    Opcja B"
+    # Dodaj więcej opcji, jeśli są dostępne
+}
+
+if [[ "$1" == "--help" ]]; then
+    show_help
+    exit 0
+fi
+
+
+
+
+^G Help          ^O Write Out     ^W Where Is      ^K Cut           ^T Execute       ^C Location      M-U Undo         M-A Set Mark     M-] To Bracket   M-Q Previous     ^B Back          ^◂ Prev Word
+^X Exit          ^R Read File     ^\ Replace       ^U Paste         ^J Justify       ^/ Go To Line    M-E Redo         M-6 Copy         ^Q Where Was     M-W Next         ^F Forward       ^▸ Next Word
+
