@@ -1,8 +1,8 @@
 #!/bin/bash
-if [ "$1" = "--date" ]; then
+if [ "$1" = "--date" ] || [ "$1" = "-d"; then
 date
 
-if [ "$1" = "--logs" ]; then
+if [ "$1" = "--logs" ] || [ "$1" = "-l"]; then
     count=${2:-100}
 
     mkdir -p logx
@@ -47,8 +47,32 @@ show_help() {
     # Dodaj więcej opcji, jeśli są dostępne
 }
 
-if [[ "$1" == "--help" ]]; then
+if [[ "$1" == "--help" ]] || [[ "$1" == "-h"]]; then
     show_help
+    exit 0
+fi
+
+if [ "$1" = "--init" ]; then
+    git clone https://github.com/AlinaRazumova/Lab4/tree/v1.0
+    repo_dir="$(pwd)/repozytorium"
+    echo "export PATH="$repo_dir:$PATH"" >> ~/.bashrc
+    source ~/.bashrc 
+    echo "Repozytorium zostało sklonowane i ścieżka została dodana do PATH."
+    exit 0
+fi
+
+echo "Usage: $0 --init"
+
+if [ "$1" = "--error" ] || [ "$1" = "-e" ]; then
+    count=${2:-100}
+    mkdir -p errorx
+    for ((i=1; i<=$count; i++)); do
+        echo "File: error$i.txt" > errorx/error$i.txt
+        echo "Created by: $0" >> errorx/error$i.txt
+        echo "Date: $(date)" >> errorx/error$i.txt
+    done
+
+    echo "Created $count files in the errorx directory."
     exit 0
 fi
 
